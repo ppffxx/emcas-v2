@@ -2,6 +2,7 @@ package com.asj.emcas.controlador;
 
 
 import com.asj.emcas.dto.UsuarioDTO;
+import com.asj.emcas.dto.UsuarioReservaDTO;
 import com.asj.emcas.dto.UsuarioSinIdDTO;
 import com.asj.emcas.entidad.Usuario;
 import com.asj.emcas.mapper.UsuarioMapper;
@@ -31,6 +32,8 @@ public class UsuarioControlador {
     @GetMapping("/{id}")
     public ResponseEntity<?> obtenerUsuario(@PathVariable Integer id) {
 
+/*
+
         try {
             Usuario usuario = usuarioServicio.obtenerUsuario(id);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuario);
@@ -39,6 +42,22 @@ public class UsuarioControlador {
         catch (RuntimeException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
         }
+
+ */
+
+
+        try {
+            Usuario usuario = usuarioServicio.obtenerUsuario(id);
+            UsuarioReservaDTO usuarioReservaDTO = usuarioMapper.UsuarioEntityToUsuarioReservaDTO(usuario);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuarioReservaDTO);
+        }
+
+        catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        }
+
+
+
 
     }
 

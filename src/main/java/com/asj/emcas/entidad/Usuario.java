@@ -1,12 +1,14 @@
 package com.asj.emcas.entidad;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,5 +28,12 @@ public class Usuario {
     private String correo;
     @Column(length = 30, nullable = false)
     private String contrasenia;
+    @OneToMany(mappedBy = "usuario")
+    @JsonIgnoreProperties("usuario")
+    private List<Reserva> reservas;
+    @OneToOne(mappedBy = "usuario")
+    @JsonIgnoreProperties("usuario")
+    private Persona persona;
+
 
 }
