@@ -5,13 +5,13 @@ import com.asj.emcas.entidad.Usuario;
 import com.asj.emcas.repositorio.PersonaRepositorio;
 import com.asj.emcas.repositorio.UsuarioRepositorio;
 import com.asj.emcas.servicio.UsuarioServicio;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
 
-@Service
+@Component
 public class UsuarioServicioImpl implements UsuarioServicio {
 
     private final UsuarioRepositorio usuarioRepositorio;
@@ -65,8 +65,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
             usuarioActualizado.setCorreo(usuario.getCorreo());
 
             try {
-                Usuario usuarioActual = usuarioRepositorio.save(usuarioActualizado);
-                return usuarioActual;
+                return usuarioRepositorio.save(usuarioActualizado);
             }
             catch (RuntimeException ex) {
                 throw new RuntimeException("Usuario o correo ya registrado");
@@ -85,7 +84,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         if(optionalUsuario.isPresent()) {
             usuarioRepositorio.deleteById(idUsuario);
         } else {
-            throw new RuntimeException("Usuario con el id" + idUsuario + "no existe");
+            throw new RuntimeException("Usuario con el id " + idUsuario + " no existe");
         }
 
     }
@@ -94,7 +93,6 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     public List<Usuario> obtenerTodosUsuarios() {
         return usuarioRepositorio.findAll();
     }
-
 
     public boolean correoOUsuarioExiste(String correo, String usuario) {
         if (usuarioRepositorio.findByCorreo(correo).isPresent() || usuarioRepositorio.findByUsuario(usuario).isPresent()) {

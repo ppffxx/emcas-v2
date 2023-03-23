@@ -1,11 +1,12 @@
 package com.asj.emcas.servicio;
 
 import com.asj.emcas.entidad.Usuario;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
-
+@Service
 public interface UsuarioServicio {
 
     Usuario crearUsuario(Usuario usuario);

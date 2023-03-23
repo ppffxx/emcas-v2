@@ -2,9 +2,11 @@ package com.asj.emcas.servicio.impl;
 
 import com.asj.emcas.entidad.Persona;
 import com.asj.emcas.servicio.PersonaServicio;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class PersonaServicioImpl implements PersonaServicio {
 
 
