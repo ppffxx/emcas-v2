@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class PersonaAcotadaDTO {
 
+    Integer idPersona;
     String nombre;
     String apellido;
 

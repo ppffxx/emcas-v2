@@ -11,4 +11,6 @@ public interface ReservaServicio {
 
     List<Reserva> obtenerTodas();
 
+    void crearReserva(Reserva reserva);
+
 }

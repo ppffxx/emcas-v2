@@ -16,7 +16,7 @@ public class UsuarioReservaDTO {
 
     private String usuario;
     private String correo;
-    private String idUsuario;
+    private Integer idUsuario;
 
     PersonaAcotadaDTO persona;
 

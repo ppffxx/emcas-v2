@@ -24,4 +24,9 @@ public class ReservaServicioImpl implements ReservaServicio {
     public List<Reserva> obtenerTodas() {
         return reservaRepositorio.findAll();
     }
+
+    @Override
+    public void crearReserva(Reserva reserva) {
+        Reserva reservaCreada = reservaRepositorio.save(reserva);
+    }
 }

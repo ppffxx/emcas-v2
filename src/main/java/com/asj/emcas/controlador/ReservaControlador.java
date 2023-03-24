@@ -1,14 +1,10 @@
 package com.asj.emcas.controlador;
 
-import com.asj.emcas.dto.ReservasTodasDTO;
 import com.asj.emcas.entidad.Reserva;
-import com.asj.emcas.mapper.ReservasMapper;
 import com.asj.emcas.servicio.ReservaServicio;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,6 +28,19 @@ public class ReservaControlador {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(reservasTodas);
     }
 
+    @PostMapping
+    public ResponseEntity<?> crearReserva(@RequestBody Reserva reserva) {
+
+        try {
+            reservaServicio.crearReserva(reserva);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Reserva creada con éxito");
+        }
+
+        catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Datos mal ingresados");
+        }
+
+    }
 
 
 
