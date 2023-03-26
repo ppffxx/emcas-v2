@@ -33,7 +33,7 @@ public class ReservaControlador {
 
         try {
             reservaServicio.crearReserva(reserva);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Reserva creada con éxito");
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         }
 
         catch (RuntimeException ex) {

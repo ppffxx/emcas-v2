@@ -33,9 +33,11 @@ public class PersonaServicioImpl implements PersonaServicio {
         Optional<Persona> optionalPersona = personaRepositorio.findById(idPersona);
         if(optionalPersona.isPresent()) {
             personaActualizada = optionalPersona.get();
+
             personaActualizada.setNombre(persona.getNombre());
             personaActualizada.setApellido(persona.getApellido());
             personaActualizada.setTelefono(persona.getTelefono());
+
 
             try {
                 return personaRepositorio.save(personaActualizada);
