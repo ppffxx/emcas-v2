@@ -6,7 +6,7 @@ import com.asj.emcas.servicio.PersonaServicio;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/personas")
 public class PersonaControlador {

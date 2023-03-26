@@ -2,6 +2,7 @@ package com.asj.emcas.controlador;
 
 
 import com.asj.emcas.dto.UsuarioDTO;
+import com.asj.emcas.dto.UsuarioLoginDTO;
 import com.asj.emcas.dto.UsuarioReservaDTO;
 import com.asj.emcas.dto.UsuarioSinIdDTO;
 import com.asj.emcas.entidad.Usuario;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioControlador {
@@ -32,20 +33,6 @@ public class UsuarioControlador {
     @GetMapping("/{id}")
     public ResponseEntity<?> obtenerUsuario(@PathVariable Integer id) {
 
-/*
-
-        try {
-            Usuario usuario = usuarioServicio.obtenerUsuario(id);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuario);
-        }
-
-        catch (RuntimeException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
-        }
-
- */
-
-
         try {
             Usuario usuario = usuarioServicio.obtenerUsuario(id);
             UsuarioReservaDTO usuarioReservaDTO = usuarioMapper.UsuarioEntityToUsuarioReservaDTO(usuario);
@@ -55,8 +42,6 @@ public class UsuarioControlador {
         catch (RuntimeException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         }
-
-
 
 
     }
@@ -109,6 +94,22 @@ public class UsuarioControlador {
         catch (RuntimeException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
         }
+
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUsuario(@RequestBody UsuarioLoginDTO usuarioLoginDTO) {
+
+     try {
+         Usuario usuarioTemp  = usuarioMapper.UsuarioLoginDTOToUsuarioEntity(usuarioLoginDTO);
+         Usuario usuarioLogueado = usuarioServicio.loginUsuario(usuarioTemp);
+         UsuarioDTO usuarioLog = usuarioMapper.UsuarioEntityToUsuarioDTO(usuarioLogueado);
+         return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuarioLog);
+     }
+
+     catch (RuntimeException ex) {
+         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+     }
 
     }
 

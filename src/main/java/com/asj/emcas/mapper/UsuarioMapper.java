@@ -2,6 +2,7 @@ package com.asj.emcas.mapper;
 
 
 import com.asj.emcas.dto.UsuarioDTO;
+import com.asj.emcas.dto.UsuarioLoginDTO;
 import com.asj.emcas.dto.UsuarioReservaDTO;
 import com.asj.emcas.dto.UsuarioSinIdDTO;
 import com.asj.emcas.entidad.Usuario;
@@ -15,6 +16,8 @@ public interface UsuarioMapper {
     UsuarioDTO UsuarioEntityToUsuarioDTO(Usuario usuario);
 
     UsuarioReservaDTO UsuarioEntityToUsuarioReservaDTO(Usuario usuario);
+
+    Usuario UsuarioLoginDTOToUsuarioEntity(UsuarioLoginDTO usuarioLoginDTO);
 
 
 }

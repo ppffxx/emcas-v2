@@ -94,6 +94,22 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         return usuarioRepositorio.findAll();
     }
 
+    @Override
+    public Usuario loginUsuario(Usuario usuario) {
+        Optional<Usuario> optionalUsuario = usuarioRepositorio.findByUsuario(usuario.getUsuario());
+        if(optionalUsuario.isPresent()) {
+            Usuario usuarioTemp = optionalUsuario.get();
+
+            if(usuarioTemp.getUsuario().equals(usuario.getUsuario()) && usuarioTemp.getContrasenia().equals(usuario.getContrasenia())) {
+                return usuarioTemp;
+            } else {
+                throw new RuntimeException("Credenciales incorrectas");
+            }
+        } else {
+            throw new RuntimeException("Credenciales incorrectas");
+        }
+    }
+
     public boolean correoOUsuarioExiste(String correo, String usuario) {
         if (usuarioRepositorio.findByCorreo(correo).isPresent() || usuarioRepositorio.findByUsuario(usuario).isPresent()) {
             return true;

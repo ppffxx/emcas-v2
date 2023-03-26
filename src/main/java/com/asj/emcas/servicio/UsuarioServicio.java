@@ -15,4 +15,7 @@ public interface UsuarioServicio {
     void eliminarUsuario(Integer idUsuario);
     List<Usuario> obtenerTodosUsuarios();
 
+    Usuario loginUsuario(Usuario usuario);
+
+
 }
