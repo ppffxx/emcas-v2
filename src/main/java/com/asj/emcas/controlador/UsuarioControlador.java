@@ -8,6 +8,7 @@ import com.asj.emcas.dto.UsuarioSinIdDTO;
 import com.asj.emcas.entidad.Usuario;
 import com.asj.emcas.mapper.UsuarioMapper;
 import com.asj.emcas.servicio.UsuarioServicio;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+@Api(value = "Allowed actios for the User Entity", tags = "User Controller")
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/usuarios")
@@ -70,6 +72,8 @@ public class UsuarioControlador {
 
     }
 
+    /*
+
     @PutMapping("/{idUsuario}")
     public ResponseEntity<?> actualizarUsuario(@PathVariable Integer idUsuario, @RequestBody UsuarioSinIdDTO usuarioSinIdDTO) {
 
@@ -84,6 +88,9 @@ public class UsuarioControlador {
         }
 
     }
+
+
+     */
 
     @DeleteMapping("/{idUsuario}")
     public ResponseEntity<?> eliminarUsuario(@PathVariable Integer idUsuario) {
