@@ -11,11 +11,10 @@ public interface UsuarioServicio {
 
     Usuario crearUsuario(Usuario usuario);
     Usuario obtenerUsuario(Integer idUsuario);
-    Usuario actualizarUsuario(Integer idUsuario, Usuario usuario);
     void eliminarUsuario(Integer idUsuario);
     List<Usuario> obtenerTodosUsuarios();
 
     Usuario loginUsuario(Usuario usuario);
-
+    boolean correoOUsuarioExiste(String correo, String usuario);
 
 }

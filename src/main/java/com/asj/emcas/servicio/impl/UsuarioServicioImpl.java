@@ -13,16 +13,13 @@ import java.util.Optional;
 
 @Component
 public class UsuarioServicioImpl implements UsuarioServicio {
-
     private final UsuarioRepositorio usuarioRepositorio;
     private final PersonaRepositorio personaRepositorio;
-
 
     public UsuarioServicioImpl(UsuarioRepositorio usuarioRepositorio, PersonaRepositorio personaRepositorio) {
         this.usuarioRepositorio = usuarioRepositorio;
         this.personaRepositorio = personaRepositorio;
     }
-
 
     @Override
     public Usuario crearUsuario(Usuario usuario) {
@@ -36,7 +33,6 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         persona.setUsuario(usuarioCreado);
         personaRepositorio.save(persona);
         return usuarioCreado;
-
     }
 
     @Override
@@ -48,30 +44,6 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         }
 
         else {
-            throw new RuntimeException("Usuario con el id" + idUsuario + "no existe");
-        }
-
-    }
-
-    @Override
-    public Usuario actualizarUsuario(Integer idUsuario, Usuario usuario) {
-        Usuario usuarioActualizado;
-        Optional<Usuario> optionalUsuario = usuarioRepositorio.findById(idUsuario);
-        if(optionalUsuario.isPresent()) {
-            usuarioActualizado = optionalUsuario.get();
-
-            usuarioActualizado.setUsuario(usuario.getUsuario());
-            usuarioActualizado.setContrasenia(usuario.getContrasenia());
-            usuarioActualizado.setCorreo(usuario.getCorreo());
-
-            try {
-                return usuarioRepositorio.save(usuarioActualizado);
-            }
-            catch (RuntimeException ex) {
-                throw new RuntimeException("Usuario o correo ya registrado");
-            }
-
-        } else {
             throw new RuntimeException("Usuario con el id " + idUsuario + " no existe");
         }
 
@@ -80,13 +52,11 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     @Override
     public void eliminarUsuario(Integer idUsuario) {
         Optional<Usuario> optionalUsuario = usuarioRepositorio.findById(idUsuario);
-
         if(optionalUsuario.isPresent()) {
             usuarioRepositorio.deleteById(idUsuario);
         } else {
             throw new RuntimeException("Usuario con el id " + idUsuario + " no existe");
         }
-
     }
 
     @Override
@@ -99,24 +69,18 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         Optional<Usuario> optionalUsuario = usuarioRepositorio.findByUsuario(usuario.getUsuario());
         if(optionalUsuario.isPresent()) {
             Usuario usuarioTemp = optionalUsuario.get();
-
             if(usuarioTemp.getUsuario().equals(usuario.getUsuario()) && usuarioTemp.getContrasenia().equals(usuario.getContrasenia())) {
                 return usuarioTemp;
             } else {
                 throw new RuntimeException("Credenciales incorrectas");
             }
         } else {
-            throw new RuntimeException("Credenciales incorrectas");
+            throw new RuntimeException("Credenciales no encontradas");
         }
     }
 
     public boolean correoOUsuarioExiste(String correo, String usuario) {
-        if (usuarioRepositorio.findByCorreo(correo).isPresent() || usuarioRepositorio.findByUsuario(usuario).isPresent()) {
-            return true;
-        } else {
-            return false;
-        }
-
+        return usuarioRepositorio.findByCorreo(correo).isPresent() || usuarioRepositorio.findByUsuario(usuario).isPresent();
     }
 
 }

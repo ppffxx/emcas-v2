@@ -1,11 +1,9 @@
 package com.asj.emcas.controlador;
-
 import com.asj.emcas.entidad.Reserva;
 import com.asj.emcas.servicio.ReservaServicio;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @CrossOrigin("*")
@@ -14,8 +12,6 @@ import java.util.List;
 public class ReservaControlador {
 
     private final ReservaServicio reservaServicio;
-
-
     public ReservaControlador(ReservaServicio reservaServicio) {
         this.reservaServicio = reservaServicio;
     }
@@ -33,15 +29,13 @@ public class ReservaControlador {
 
         try {
             reservaServicio.crearReserva(reserva);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(reserva);
         }
 
         catch (RuntimeException ex) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Datos mal ingresados");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos mal ingresados");
         }
 
     }
-
-
 
 }

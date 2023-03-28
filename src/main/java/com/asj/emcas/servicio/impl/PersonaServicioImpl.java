@@ -4,8 +4,6 @@ import com.asj.emcas.entidad.Persona;
 import com.asj.emcas.repositorio.PersonaRepositorio;
 import com.asj.emcas.servicio.PersonaServicio;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -18,16 +16,6 @@ public class PersonaServicioImpl implements PersonaServicio {
     }
 
     @Override
-    public Persona crearPersona(Persona persona) {
-        return null;
-    }
-
-    @Override
-    public Persona obtenerPersona(Integer idUsuario) {
-        return null;
-    }
-
-    @Override
     public Persona actualizarPersona(Integer idPersona, Persona persona) {
         Persona personaActualizada;
         Optional<Persona> optionalPersona = personaRepositorio.findById(idPersona);
@@ -37,8 +25,6 @@ public class PersonaServicioImpl implements PersonaServicio {
             personaActualizada.setNombre(persona.getNombre());
             personaActualizada.setApellido(persona.getApellido());
             personaActualizada.setTelefono(persona.getTelefono());
-
-
             try {
                 return personaRepositorio.save(personaActualizada);
             }
@@ -51,13 +37,4 @@ public class PersonaServicioImpl implements PersonaServicio {
         }
     }
 
-    @Override
-    public void eliminarPersona(Integer idUsuario) {
-
-    }
-
-    @Override
-    public List<Persona> getall() {
-        return null;
-    }
 }

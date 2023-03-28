@@ -8,6 +8,7 @@ import com.asj.emcas.dto.UsuarioSinIdDTO;
 import com.asj.emcas.entidad.Usuario;
 import com.asj.emcas.mapper.UsuarioMapper;
 import com.asj.emcas.servicio.UsuarioServicio;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +16,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+@Api(value = "Allowed actios for the User Entity", tags = "User Controller")
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioControlador {
-
 
     private final UsuarioServicio usuarioServicio;
     private final UsuarioMapper usuarioMapper;
@@ -29,12 +30,11 @@ public class UsuarioControlador {
         this.usuarioMapper = usuarioMapper;
     }
 
-
-    @GetMapping("/{id}")
-    public ResponseEntity<?> obtenerUsuario(@PathVariable Integer id) {
+    @GetMapping("/{idUsuario}")
+    public ResponseEntity<?> obtenerUsuario(@PathVariable Integer idUsuario) {
 
         try {
-            Usuario usuario = usuarioServicio.obtenerUsuario(id);
+            Usuario usuario = usuarioServicio.obtenerUsuario(idUsuario);
             UsuarioReservaDTO usuarioReservaDTO = usuarioMapper.UsuarioEntityToUsuarioReservaDTO(usuario);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuarioReservaDTO);
         }
@@ -43,7 +43,6 @@ public class UsuarioControlador {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         }
 
-
     }
 
     @GetMapping("/todos")
@@ -51,8 +50,6 @@ public class UsuarioControlador {
         List<Usuario> usuariosTodos = usuarioServicio.obtenerTodosUsuarios();
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuariosTodos);
     }
-
-
 
     @PostMapping
     public ResponseEntity<?> crearUsuario(@RequestBody UsuarioSinIdDTO usuarioSinIdDTO) {
@@ -65,22 +62,7 @@ public class UsuarioControlador {
         }
 
         catch (RuntimeException ex) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
-        }
-
-    }
-
-    @PutMapping("/{idUsuario}")
-    public ResponseEntity<?> actualizarUsuario(@PathVariable Integer idUsuario, @RequestBody UsuarioSinIdDTO usuarioSinIdDTO) {
-
-        try {
-            Usuario usuarioTemp = usuarioMapper.UsuarioDTORegistroToUsuarioEntity(usuarioSinIdDTO);
-            Usuario usActualizado = usuarioServicio.actualizarUsuario(idUsuario, usuarioTemp);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(usActualizado);
-
-        }
-        catch (RuntimeException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error en los datos ingresados");
         }
 
     }
@@ -108,7 +90,7 @@ public class UsuarioControlador {
      }
 
      catch (RuntimeException ex) {
-         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
      }
 
     }

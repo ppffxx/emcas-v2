@@ -5,10 +5,7 @@ import com.asj.emcas.entidad.Reserva;
 import com.asj.emcas.repositorio.ReservaRepositorio;
 import com.asj.emcas.servicio.ReservaServicio;
 import org.springframework.stereotype.Component;
-
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class ReservaServicioImpl implements ReservaServicio {
@@ -27,6 +24,6 @@ public class ReservaServicioImpl implements ReservaServicio {
 
     @Override
     public void crearReserva(Reserva reserva) {
-        Reserva reservaCreada = reservaRepositorio.save(reserva);
+        reservaRepositorio.save(reserva);
     }
 }

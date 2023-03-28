@@ -23,7 +23,6 @@ public class ServicioControlador {
         this.servicioMapper = servicioMapper;
     }
 
-
     @GetMapping("/todos")
     public ResponseEntity<?> obtenerTodos() {
         List<Servicio> serviciosTodos = servServicio.obtenerTodosServicios();
@@ -54,9 +53,7 @@ public class ServicioControlador {
         catch (RuntimeException ex) {
             throw new RuntimeException(ex.getMessage());
         }
-        finally {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("error en los datos mandados");
-        }
+
     }
 
     @PutMapping("/{idServicio}")
@@ -74,7 +71,7 @@ public class ServicioControlador {
     }
 
     @DeleteMapping("/{idServicio}")
-    public ResponseEntity<?> eliminarUsuario(@PathVariable Integer idServicio) {
+    public ResponseEntity<?> eliminarServicio(@PathVariable Integer idServicio) {
         try {
             servServicio.eliminarServicio(idServicio);
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();

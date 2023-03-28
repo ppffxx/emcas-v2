@@ -1,6 +1,5 @@
 package com.asj.emcas.controlador;
 
-
 import com.asj.emcas.entidad.Persona;
 import com.asj.emcas.servicio.PersonaServicio;
 import org.springframework.http.HttpStatus;
@@ -10,13 +9,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/personas")
 public class PersonaControlador {
-
     private final PersonaServicio personaServicio;
-
     public PersonaControlador(PersonaServicio personaServicio) {
         this.personaServicio = personaServicio;
     }
-
     @PutMapping("/{idPersona}")
     public ResponseEntity<?> actualizarPersona(@PathVariable Integer idPersona, @RequestBody Persona persona) {
 

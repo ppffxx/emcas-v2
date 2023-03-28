@@ -44,6 +44,8 @@ public class ServServicioImpl implements ServServicio {
         Optional<Servicio> optionalServicio = servicioRepositorio.findById(idServicio);
         if(optionalServicio.isPresent()) {
             servAct = optionalServicio.get();
+            servAct.setNombre(tmp.getNombre());
+            servAct.setDescripcion(tmp.getDescripcion());
 
             try {
                 return servicioRepositorio.save(servAct);
