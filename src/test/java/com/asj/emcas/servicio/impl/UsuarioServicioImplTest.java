@@ -101,14 +101,17 @@ class UsuarioServicioImplTest {
 
     }
 
-    @Test
-    void obtenerTodosUsuarios() {
 
-        List<Usuario> listaUsuarios = new ArrayList<>();
-        given(usuarioRepositorio.findAll()).willReturn(listaUsuarios);
-        usuarioServicio.obtenerTodosUsuarios();
+    //NO SE USA - SOLO PARA PRUEBA
 
-    }
+//    @Test
+//    void obtenerTodosUsuarios() {
+//
+//        List<Usuario> listaUsuarios = new ArrayList<>();
+//        given(usuarioRepositorio.findAll()).willReturn(listaUsuarios);
+//        usuarioServicio.obtenerTodosUsuarios();
+//
+//    }
 
     @Test
     void loginUsuario() {

@@ -13,7 +13,9 @@ public interface UsuarioServicio {
     Usuario obtenerUsuario(Integer idUsuario);
 
     void eliminarUsuario(Integer idUsuario);
-    List<Usuario> obtenerTodosUsuarios();
+
+    //NO SE USA - SOLO PARA PRUEBA
+    //List<Usuario> obtenerTodosUsuarios();
 
     Usuario loginUsuario(Usuario usuario);
     boolean correoOUsuarioExiste(String correo, String usuario);

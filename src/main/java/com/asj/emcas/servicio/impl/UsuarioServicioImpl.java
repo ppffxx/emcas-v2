@@ -60,10 +60,12 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         }
     }
 
-    @Override
-    public List<Usuario> obtenerTodosUsuarios() {
-        return usuarioRepositorio.findAll();
-    }
+    //NO SE USA - SOLO PARA PRUEBA
+
+//    @Override
+//    public List<Usuario> obtenerTodosUsuarios() {
+//        return usuarioRepositorio.findAll();
+//    }
 
     @Override
     public Usuario loginUsuario(Usuario usuario) {
