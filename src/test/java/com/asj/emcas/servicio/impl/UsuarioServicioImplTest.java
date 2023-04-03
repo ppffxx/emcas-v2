@@ -78,7 +78,6 @@ class UsuarioServicioImplTest {
         assertThatThrownBy(() -> usuarioServicio.obtenerUsuario(idUsuario)).isInstanceOf(RuntimeException.class);
     }
 
-
     @Test
     void eliminarUsuario() {
 

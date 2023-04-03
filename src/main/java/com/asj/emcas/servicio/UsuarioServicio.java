@@ -11,6 +11,7 @@ public interface UsuarioServicio {
 
     Usuario crearUsuario(Usuario usuario);
     Usuario obtenerUsuario(Integer idUsuario);
+
     void eliminarUsuario(Integer idUsuario);
     List<Usuario> obtenerTodosUsuarios();
 
