@@ -4,11 +4,12 @@ import com.asj.emcas.entidad.Servicio;
 import com.asj.emcas.repositorio.ServicioRepositorio;
 import com.asj.emcas.servicio.ServServicio;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class ServServicioImpl implements ServServicio {
 
     private final ServicioRepositorio servicioRepositorio;

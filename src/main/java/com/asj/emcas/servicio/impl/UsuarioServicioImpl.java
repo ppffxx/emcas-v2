@@ -6,12 +6,13 @@ import com.asj.emcas.repositorio.PersonaRepositorio;
 import com.asj.emcas.repositorio.UsuarioRepositorio;
 import com.asj.emcas.servicio.UsuarioServicio;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 
-@Component
+@Service
 public class UsuarioServicioImpl implements UsuarioServicio {
     private final UsuarioRepositorio usuarioRepositorio;
     private final PersonaRepositorio personaRepositorio;
@@ -80,7 +81,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     }
 
     public boolean correoOUsuarioExiste(String correo, String usuario) {
-        return usuarioRepositorio.findByCorreo(correo).isPresent() || usuarioRepositorio.findByUsuario(usuario).isPresent();
+        return (usuarioRepositorio.findByCorreo(correo).isPresent() || usuarioRepositorio.findByUsuario(usuario).isPresent());
     }
 
 }

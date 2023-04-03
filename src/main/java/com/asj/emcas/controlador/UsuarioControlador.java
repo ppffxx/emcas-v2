@@ -62,7 +62,7 @@ public class UsuarioControlador {
         }
 
         catch (RuntimeException ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error en los datos ingresados");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
 
     }

@@ -4,10 +4,11 @@ package com.asj.emcas.servicio.impl;
 import com.asj.emcas.entidad.Reserva;
 import com.asj.emcas.repositorio.ReservaRepositorio;
 import com.asj.emcas.servicio.ReservaServicio;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
-@Component
+@Service
 public class ReservaServicioImpl implements ReservaServicio {
 
     private final ReservaRepositorio reservaRepositorio;
