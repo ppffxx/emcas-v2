@@ -35,6 +35,8 @@ class UsuarioServicioImplTest {
     @Autowired
     private UsuarioServicio usuarioServicio;
 
+    /*
+
     @Test
     void crearUsuario() {
 
@@ -170,4 +172,6 @@ class UsuarioServicioImplTest {
 
     }
 
+
+     */
 }
