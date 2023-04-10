@@ -42,9 +42,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
         if(optionalUsuario.isPresent()) {
             return optionalUsuario.get();
-        }
-
-        else {
+        } else {
             throw new RuntimeException("Usuario con el id " + idUsuario + " no existe");
         }
 
@@ -59,13 +57,6 @@ public class UsuarioServicioImpl implements UsuarioServicio {
             throw new RuntimeException("Usuario con el id " + idUsuario + " no existe");
         }
     }
-
-    //NO SE USA - SOLO PARA PRUEBA
-
-//    @Override
-//    public List<Usuario> obtenerTodosUsuarios() {
-//        return usuarioRepositorio.findAll();
-//    }
 
     @Override
     public Usuario loginUsuario(Usuario usuario) {

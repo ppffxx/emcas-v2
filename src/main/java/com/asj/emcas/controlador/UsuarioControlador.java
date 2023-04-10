@@ -45,15 +45,6 @@ public class UsuarioControlador {
 
     }
 
-    //NO SE USA - SOLO PARA PRUEBAS (hay que eliminar este GET)
-
-//    @GetMapping("/todos")
-//    public ResponseEntity<?> obtenerTodos() {
-//        List<Usuario> usuariosTodos = usuarioServicio.obtenerTodosUsuarios();
-//        return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuariosTodos);
-//    }
-
-
     @PostMapping
     public ResponseEntity<?> crearUsuario(@RequestBody UsuarioSinIdDTO usuarioSinIdDTO) {
 
