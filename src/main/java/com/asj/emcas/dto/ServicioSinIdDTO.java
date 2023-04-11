@@ -5,11 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 @Getter
 @Setter
 @AllArgsConstructor
 public class ServicioSinIdDTO {
 
+    @NotNull(message = "El nombre no puede estar en blanco")
+    @NotBlank(message = "El nombre no puede estar en blanco")
     private String nombre;
     private String descripcion;
     private String imagen1;

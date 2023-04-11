@@ -1,12 +1,7 @@
 package com.asj.emcas.controlador;
 
-
-import com.asj.emcas.dto.UsuarioDTO;
 import com.asj.emcas.dto.UsuarioLoginDTO;
-import com.asj.emcas.dto.UsuarioReservaDTO;
 import com.asj.emcas.dto.UsuarioSinIdDTO;
-import com.asj.emcas.entidad.Usuario;
-import com.asj.emcas.mapper.UsuarioMapper;
 import com.asj.emcas.servicio.UsuarioServicio;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 
 @Api(value = "Allowed actios for the User Entity", tags = "User Controller")
@@ -26,7 +20,6 @@ import java.util.List;
 public class UsuarioControlador {
 
     private final UsuarioServicio usuarioServicio;
-    private final UsuarioMapper usuarioMapper;
 
     @GetMapping("/{idUsuario}")
     public ResponseEntity<?> obtenerUsuario(@PathVariable Integer idUsuario) {
