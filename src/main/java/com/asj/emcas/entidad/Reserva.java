@@ -9,6 +9,8 @@ import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Getter
@@ -33,6 +35,8 @@ public class Reserva {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Servicio servicio;
 
+    @FutureOrPresent(message = "la fecha no puede ser anterior a la actual")
+    @NotNull(message = "la fecha no puede ser nula")
     @Column(nullable = false)
     LocalDate fechaReserva;
 

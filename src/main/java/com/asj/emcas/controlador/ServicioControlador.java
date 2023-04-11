@@ -16,10 +16,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/servicios")
 public class ServicioControlador {
-
     private final ServServicio servServicio;
-    private final ServicioMapper servicioMapper;
-
     @GetMapping("/todos")
     public ResponseEntity<?> obtenerTodos() {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(servServicio.obtenerTodosServicios());

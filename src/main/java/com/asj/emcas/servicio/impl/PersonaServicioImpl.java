@@ -1,41 +1,27 @@
 package com.asj.emcas.servicio.impl;
 
+import com.asj.emcas.dto.PersonaAcotadaDTO;
 import com.asj.emcas.entidad.Persona;
+import com.asj.emcas.exceptions.NotFoundException;
+import com.asj.emcas.mapper.PersonaMapper;
 import com.asj.emcas.repositorio.PersonaRepositorio;
 import com.asj.emcas.servicio.PersonaServicio;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
+@RequiredArgsConstructor
 @Service
 public class PersonaServicioImpl implements PersonaServicio {
-
     private final PersonaRepositorio personaRepositorio;
-
-    public PersonaServicioImpl(PersonaRepositorio personaRepositorio) {
-        this.personaRepositorio = personaRepositorio;
-    }
-
+    private final PersonaMapper personaMapper;
     @Override
-    public Persona actualizarPersona(Integer idPersona, Persona persona) {
-        Persona personaActualizada;
-        Optional<Persona> optionalPersona = personaRepositorio.findById(idPersona);
-        if(optionalPersona.isPresent()) {
-            personaActualizada = optionalPersona.get();
-
-            personaActualizada.setNombre(persona.getNombre());
-            personaActualizada.setApellido(persona.getApellido());
-            personaActualizada.setTelefono(persona.getTelefono());
-            try {
-                return personaRepositorio.save(personaActualizada);
-            }
-            catch (RuntimeException ex) {
-                throw new RuntimeException("Error al actualizar persona");
-            }
-
-        } else {
-            throw new RuntimeException("Persona con el id " + idPersona + " no existe");
-        }
+    public PersonaAcotadaDTO actualizarPersona(Integer idPersona, Persona persona) {
+        Persona personaEnt = personaRepositorio.findById(idPersona).orElseThrow(() -> new NotFoundException("Persona con el id " + idPersona + " no existe"));
+        if(persona.getNombre() != null) {personaEnt.setNombre(persona.getNombre());}
+        if(persona.getApellido() != null) {personaEnt.setApellido(persona.getApellido());}
+        if(persona.getTelefono() != null) {personaEnt.setTelefono(persona.getTelefono());}
+        Persona personaResponse = personaRepositorio.save(personaEnt);
+        return personaMapper.PersonaEntityToPersonaAcotadaDTO(personaResponse);
     }
 
 }

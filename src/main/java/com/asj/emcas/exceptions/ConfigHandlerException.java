@@ -7,6 +7,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,11 @@ public class ConfigHandlerException {
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<?> RuntimeEx(RuntimeException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(SQLException.class)
+    public ResponseEntity<?> SQLEx(SQLException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
