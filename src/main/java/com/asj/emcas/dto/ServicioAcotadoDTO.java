@@ -9,8 +9,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ServicioAcotadoDTO {
 
-    String nombre;
-    Double precio;
+    private String nombre;
+    private Double precio;
 
 
 }
