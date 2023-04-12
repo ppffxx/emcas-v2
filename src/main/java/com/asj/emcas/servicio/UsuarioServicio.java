@@ -4,11 +4,7 @@ import com.asj.emcas.dto.UsuarioDTO;
 import com.asj.emcas.dto.UsuarioLoginDTO;
 import com.asj.emcas.dto.UsuarioReservaDTO;
 import com.asj.emcas.dto.UsuarioSinIdDTO;
-import com.asj.emcas.entidad.Usuario;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-
 
 @Service
 public interface UsuarioServicio {

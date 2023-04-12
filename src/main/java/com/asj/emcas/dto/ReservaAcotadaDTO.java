@@ -1,6 +1,5 @@
 package com.asj.emcas.dto;
 
-import com.asj.emcas.entidad.Servicio;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,7 +1,5 @@
 package com.asj.emcas.entidad;
 
-
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
