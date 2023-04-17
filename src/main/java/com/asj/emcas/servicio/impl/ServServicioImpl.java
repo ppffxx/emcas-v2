@@ -3,6 +3,7 @@ package com.asj.emcas.servicio.impl;
 import com.asj.emcas.dto.ServicioDTO;
 import com.asj.emcas.dto.ServicioSinIdDTO;
 import com.asj.emcas.entidad.Servicio;
+import com.asj.emcas.exceptions.Messages;
 import com.asj.emcas.exceptions.NotFoundException;
 import com.asj.emcas.mapper.ServicioMapper;
 import com.asj.emcas.repositorio.ServicioRepositorio;
@@ -24,14 +25,14 @@ public class ServServicioImpl implements ServServicio {
 
     @Override
     public ServicioDTO obtenerServicio(Integer idServicio) {
-        Servicio servicio = servicioRepositorio.findById(idServicio).orElseThrow(() -> new NotFoundException("Servicio con el id " + idServicio + " no existe"));
+        Servicio servicio = servicioRepositorio.findById(idServicio).orElseThrow(() -> new NotFoundException(Messages.getMessage("Servicio", idServicio)));
         return servicioMapper.ServicioEntityToServicioDTO(servicio);
     }
 
     @Override
     public ServicioDTO actualizarServicio(Integer idServicio, ServicioSinIdDTO servicioSinIdDTO) {
         Servicio servicioTemp = servicioMapper.ServicioCreacionDTOToServicioEntity(servicioSinIdDTO);
-        Servicio servAct = servicioRepositorio.findById(idServicio).orElseThrow(() -> new NotFoundException("Servicio con el id " + idServicio + " no existe"));
+        Servicio servAct = servicioRepositorio.findById(idServicio).orElseThrow(() -> new NotFoundException(Messages.getMessage("Servicio", idServicio)));
         if(servicioTemp.getNombre() != null) {servAct.setNombre(servicioTemp.getNombre());}
         if(servicioTemp.getDescripcion() != null) {servAct.setDescripcion(servicioTemp.getDescripcion());}
         if(servicioTemp.getPrecio() != null) {servAct.setPrecio(servicioTemp.getPrecio());}
@@ -40,7 +41,7 @@ public class ServServicioImpl implements ServServicio {
 
     @Override
     public void eliminarServicio(Integer idServicio) {
-        servicioRepositorio.findById(idServicio).orElseThrow(() -> new NotFoundException("Servicio con el id " + idServicio + " no existe"));
+        servicioRepositorio.findById(idServicio).orElseThrow(() -> new NotFoundException(Messages.getMessage("Servicio", idServicio)));
         servicioRepositorio.deleteById(idServicio);
     }
 
